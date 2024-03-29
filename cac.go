@@ -105,12 +105,14 @@ type ConfigRichTextType struct {
 }
 
 type ConfigRichTextV2Type struct {
-	MinLength             int `json:"minLength,omitempty"`
-	MaxLength             int `json:"maxLength,omitempty"`
-	SupportedFormatFilter *[]struct {
-		SupportedFormats []string `json:"supportedFormats,omitempty"`
-	} `json:"supportedFormatFilter,omitempty"`
-	NoSupportedFormat bool `json:"noSupportedFormat,omitempty"`
+	MinLength             int                     `json:"minLength,omitempty"`
+	MaxLength             int                     `json:"maxLength,omitempty"`
+	SupportedFormatFilter *ConfigSupportedFormats `json:"supportedFormatFilter,omitempty"`
+	NoSupportedFormat     bool                    `json:"noSupportedFormat,omitempty"`
+}
+
+type ConfigSupportedFormats struct {
+	SupportedFormats []string `json:"supportedFormats,omitempty"`
 }
 
 type ConfigMarkdownType struct {
