@@ -31,31 +31,23 @@ type RestaurantEntity struct {
 	Emails         *[]string `json:"emails,omitempty"`
 
 	// Location Info
-	Description                     *string           `json:"description,omitempty"`
-	Hours                           **Hours           `json:"hours,omitempty"`
-	BrunchHours                     **Hours           `json:"brunchHours,omitempty"`
-	DriveThroughHours               **Hours           `json:"driveThroughHours,omitempty"`
-	AdditionalHoursText             *string           `json:"additionalHoursText,omitempty"`
-	DeliveryHours                   **Hours           `json:"deliveryHours,omitempty"`
-	YearEstablished                 **float64         `json:"yearEstablished,omitempty"`
-	Services                        *[]string         `json:"services,omitempty"`
-	Languages                       *[]string         `json:"languages,omitempty"`
-	Logo                            **Photo           `json:"logo,omitempty"`
-	PaymentOptions                  *[]string         `json:"paymentOptions,omitempty"`
-	Geomodifier                     *string           `json:"geomodifier,omitempty"`
-	PickupAndDeliveryServices       *[]string         `json:"pickupAndDeliveryServices,omitempty"`
-	MealsServed                     *UnorderedStrings `json:"mealsServed,omitempty"`
-	AcceptsReservations             **Ternary         `json:"acceptsReservations,omitempty"`
-	KitchenHours                    **Hours           `json:"kitchenHours,omitempty"`
-	DineInHours                     **Hours           `json:"dineInHours,omitempty"`
-	AccessHours                     **Hours           `json:"accessHours,omitempty"`
-	HappyHours                      **Hours           `json:"happyHours,omitempty"`
-	OnlineServiceHours              **Hours           `json:"onlineServiceHours,omitempty"`
-	PickupHours                     **Hours           `json:"pickupHours,omitempty"`
-	SeniorHours                     **Hours           `json:"seniorHours,omitempty"`
-	TakeoutHours                    **Hours           `json:"takeoutHours,omitempty"`
-	HolidayHoursConversationEnabled **Ternary         `json:"holidayHoursConversationEnabled,omitempty"`
-	FrequentlyAskedQuestions        *[]FAQField       `json:"frequentlyAskedQuestions,omitempty"`
+	Description               *string           `json:"description,omitempty"`
+	Hours                     **Hours           `json:"hours,omitempty"`
+	BrunchHours               **Hours           `json:"brunchHours,omitempty"`
+	DriveThroughHours         **Hours           `json:"driveThroughHours,omitempty"`
+	AdditionalHoursText       *string           `json:"additionalHoursText,omitempty"`
+	DeliveryHours             **Hours           `json:"deliveryHours,omitempty"`
+	YearEstablished           **float64         `json:"yearEstablished,omitempty"`
+	Services                  *[]string         `json:"services,omitempty"`
+	Languages                 *[]string         `json:"languages,omitempty"`
+	Logo                      **Photo           `json:"logo,omitempty"`
+	PaymentOptions            *[]string         `json:"paymentOptions,omitempty"`
+	Geomodifier               *string           `json:"geomodifier,omitempty"`
+	PickupAndDeliveryServices *[]string         `json:"pickupAndDeliveryServices,omitempty"`
+	MealsServed               *UnorderedStrings `json:"mealsServed,omitempty"`
+	AcceptsReservations       **Ternary         `json:"kitchenHours,omitempty"`
+	KitchenHours              **Hours           `json:"kitchenHours,omitempty"`
+	DineInHours               **Hours           `json:"dineInHours,omitempty"`
 
 	// Lats & Lngs
 	DisplayCoordinate  **Coordinate `json:"displayCoordinate,omitempty"`
@@ -76,7 +68,6 @@ type RestaurantEntity struct {
 	ReservationUrl  **Website         `json:"reservationUrl,omitempty"`
 	WebsiteUrl      **Website         `json:"websiteUrl,omitempty"`
 	FeaturedMessage **FeaturedMessage `json:"featuredMessage,omitempty"`
-	DeliveryUrl     **Website         `json:"deliveryUrl,omitempty"`
 
 	// Uber
 	UberLink         **UberLink         `json:"uberLink,omitempty"`
@@ -94,12 +85,8 @@ type RestaurantEntity struct {
 	GoogleProfilePhoto    **Image  `json:"googleProfilePhoto,omitempty"`
 	GoogleWebsiteOverride **string `json:"googleWebsiteOverride,omitempty"`
 
-	InstagramHandle   *string `json:"instagramHandle,omitempty"`
-	TwitterHandle     *string `json:"twitterHandle,omitempty"`
-	LinkedInUrl       *string `json:"linkedInUrl,omitempty"`
-	PinterestUrl      *string `json:"pinterestUrl,omitempty"`
-	TikTokUrl         *string `json:"tikTokUrl,omitempty"`
-	YouTubeChannelUrl *string `json:"youTubeChannelUrl,omitempty"`
+	InstagramHandle *string `json:"instagramHandle,omitempty"`
+	TwitterHandle   *string `json:"twitterHandle,omitempty"`
 
 	PhotoGallery *[]Photo `json:"photoGallery,omitempty"`
 	Videos       *[]Video `json:"videos,omitempty"`
