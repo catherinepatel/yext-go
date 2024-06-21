@@ -32,23 +32,15 @@ type HotelEntity struct {
 	Emails         *[]string `json:"emails,omitempty"`
 
 	// Location Info
-	AdditionalHoursText             *string           `json:"additionalHoursText,omitempty"`
-	Associations                    *[]string         `json:"associations,omitempty"`
-	Brands                          *[]string         `json:"brands,omitempty"`
-	Description                     *string           `json:"description,omitempty"`
-	Hours                           **Hours           `json:"hours,omitempty"`
-	CheckInTime                     *string           `json:"checkInTime,omitempty"` // TODO: check type of time field
-	CheckOutTime                    *string           `json:"checkOutTime,omitempty"`
-	Services                        *[]string         `json:"services,omitempty"`
-	Languages                       *[]string         `json:"languages,omitempty"`
-	AvailableRoomTypes              *UnorderedStrings `json:"availableRoomTypes,omitempty"`
-	HolidayHoursConversationEnabled **Ternary         `json:"holidayHoursConversationEnabled,omitempty"`
-	AccessHours                     **Hours           `json:"accessHours,omitempty"`
-	BrunchHours                     **Hours           `json:"brunchHours,omitempty"`
-	HappyHours                      **Hours           `json:"happyHours,omitempty"`
-	KitchenHours                    **Hours           `json:"kitchenHours,omitempty"`
-	KidActivities                   **Hours           `json:"kidActivities,omitempty"`
-	FrequentlyAskedQuestions        *[]FAQField       `json:"frequentlyAskedQuestions,omitempty"`
+	AdditionalHoursText *string   `json:"additionalHoursText,omitempty"`
+	Associations        *[]string `json:"associations,omitempty"`
+	Brands              *[]string `json:"brands,omitempty"`
+	Description         *string   `json:"description,omitempty"`
+	Hours               **Hours   `json:"hours,omitempty"`
+	CheckInTime         *string   `json:"checkInTime,omitempty"` // TODO: check type of time field
+	CheckOutTime        *string   `json:"checkOutTime,omitempty"`
+	Services            *[]string `json:"services,omitempty"`
+	Languages           *[]string `json:"languages,omitempty"`
 
 	// Social Media
 	FacebookPageUrl *string `json:"facebookPageUrl,omitempty"`
@@ -201,81 +193,43 @@ type HotelEntity struct {
 	WiFiDetails   *UnorderedStrings `json:"wifiDetails,omitempty"`
 
 	// Business
-	MeetingRoomCount   **int     `json:"meetingRoomCount,omitempty"`
-	BusinessCenter     **Ternary `json:"businessCenter,omitempty"`
-	BlackOwnedBusiness **Ternary `json:"blackOwnedBusiness,omitempty"`
+	MeetingRoomCount **int     `json:"meetingRoomCount,omitempty"`
+	BusinessCenter   **Ternary `json:"businessCenter,omitempty"`
 
 	// Accessibility
 	MobilityAccessible   **Ternary         `json:"mobilityAccessible,omitempty"`
 	AccessibilityDetails *UnorderedStrings `json:"accessibilityDetails,omitempty"`
 
 	// Covid & Cleanliness Fields
-	DigitalGuestRoomKeys                    **Ternary         `json:"digitalGuestRoomKeys,omitempty"`
-	CommonAreasAdvancedCleaning             **Ternary         `json:"commonAreasEnhancedCleaning,omitempty"`
-	GuestRoomsEnhancedCleaning              **Ternary         `json:"guestRoomsEnhancedCleaning,omitempty"`
-	CommercialGradeDisinfectantUsed         **Ternary         `json:"commercialGradeDisinfectantUsed,omitempty"`
-	EmployeesTrainedInCleaningProcedures    **Ternary         `json:"employeesTrainedInCleaningProcedures,omitempty"`
-	EmployeesTrainedInHandWashing           **Ternary         `json:"employeesTrainedInHandWashing,omitempty"`
-	EmployeesWearProtectiveEquipment        **Ternary         `json:"employeesWearProtectiveEquipment,omitempty"`
-	HighTouchItemsRemovedFromGuestRooms     **Ternary         `json:"highTouchItemsRemovedFromGuestRooms,omitempty"`
-	HighTouchItemsRemovedFromCommonAreas    **Ternary         `json:"highTouchItemsRemovedFromCommonAreas,omitempty"`
-	PlasticKeycardsDisinfectedOrDiscarded   **Ternary         `json:"plasticKeycardsDisinfectedOrDiscarded,omitempty"`
-	ContactlessCheckInCheckOut              **Ternary         `json:"contactlessCheckinOrCheckout,omitempty"`
-	PhysicalDistancingRequired              **Ternary         `json:"physicalDistancingRequired,omitempty"`
-	PlexiglassUsed                          **Ternary         `json:"plexiglassUsed,omitempty"`
-	LimitedOccupancyInSharedAreas           **Ternary         `json:"limitedOccupancyInSharedAreas,omitempty"`
-	PrivateSpacesInWellnessAreas            **Ternary         `json:"privateSpacesInWellnessAreas,omitempty"`
-	CommonAreasArrangedForDistancing        **Ternary         `json:"commonAreasArrangedForDistancing,omitempty"`
-	SanitizerAvailable                      **Ternary         `json:"sanitizerAvailable,omitempty"`
-	MasksRequired                           **Ternary         `json:"masksRequired,omitempty"`
-	IndividuallyPackagedMealsAvailable      **Ternary         `json:"individuallyPackagedMealsAvailable,omitempty"`
-	DisposableFlatware                      **Ternary         `json:"disposableFlatware,omitempty"`
-	SingleUseMenus                          **Ternary         `json:"singleUseMenus,omitempty"`
-	RoomBookingsBuffer                      **Ternary         `json:"roomBookingsBuffer,omitempty"`
-	RequestOnlyHousekeeping                 **Ternary         `json:"requestOnlyHousekeeping,omitempty"`
-	InRoomHygieneKits                       **Ternary         `json:"inRoomHygieneKits,omitempty"`
-	ProtectiveEquipmentAvailable            **Ternary         `json:"protectiveEquipmentAvailable,omitempty"`
-	SafeHandlingForFoodServices             **Ternary         `json:"safeHandlingForFoodServices,omitempty"`
-	AdditionalSanitationInFoodAreas         **Ternary         `json:"additionalSanitationInFoodAreas,omitempty"`
-	EcoCertifications                       *UnorderedStrings `json:"ecoCertifications,omitempty"`
-	EcoFriendlyToiletries                   **Ternary         `json:"ecoFriendlyToiletries,omitempty"`
-	CarbonFreeEnergySources                 **Ternary         `json:"carbonFreeEnergySources,omitempty"`
-	CompostableFoodContainersAndCutlery     **Ternary         `json:"compostableFoodContainersAndCutlery,omitempty"`
-	CompostsExcessFood                      **Ternary         `json:"compostsExcessFood,omitempty"`
-	DonatesExcessFood                       **Ternary         `json:"donatesExcessFood,omitempty"`
-	EnergyConservationProgram               **Ternary         `json:"energyConservationProgram,omitempty"`
-	EnergyEfficientHeatingAndCoolingSystems **Ternary         `json:"energyEfficientHeatingAndCoolingSystems,omitempty"`
-	EnergyEfficientLighting                 **Ternary         `json:"energyEfficientLighting,omitempty"`
-	EnergySavingThermostats                 **Ternary         `json:"energySavingThermostats,omitempty"`
-	FoodWasteReductionProgram               **Ternary         `json:"foodWasteReductionProgram,omitempty"`
-	IndependentOrganizationAuditsEnergyUse  **Ternary         `json:"independentOrganizationAuditsEnergyUse,omitempty"`
-	IndependentOrganizationAuditsWaterUse   **Ternary         `json:"independentOrganizationAuditsWaterUse,omitempty"`
-	LinenReuseProgram                       **Ternary         `json:"linenReuseProgram,omitempty"`
-	LocallySourcedFoodAndBeverages          **Ternary         `json:"locallySourcedFoodAndBeverages,omitempty"`
-	OrganicCageFreeEggs                     **Ternary         `json:"organicCageFreeEggs,omitempty"`
-	OrganicFoodAndBeverages                 **Ternary         `json:"organicFoodAndBeverages,omitempty"`
-	RecyclingProgram                        **Ternary         `json:"recyclingProgram,omitempty"`
-	RefillableToiletryContainers            **Ternary         `json:"refillableToiletryContainers,omitempty"`
-	ResponsiblePurchasingPolicy             **Ternary         `json:"responsiblePurchasingPolicy,omitempty"`
-	ResponsiblySourcesSeafood               **Ternary         `json:"responsiblySourcesSeafood,omitempty"`
-	SafelyDisposesBatteries                 **Ternary         `json:"safelyDisposesBatteries,omitempty"`
-	SafelyDisposesElectronics               **Ternary         `json:"safelyDisposesElectronics,omitempty"`
-	SafelyDisposesLightbulbs                **Ternary         `json:"safelyDisposesLightbulbs,omitempty"`
-	SafelyHandlesHazardousSubstances        **Ternary         `json:"safelyHandlesHazardousSubstances,omitempty"`
-	SingleUsePlasticStrawsBanned            **Ternary         `json:"singleUsePlasticStrawsBanned,omitempty"`
-	SingleUsePlasticWaterBottlesBanned      **Ternary         `json:"singleUsePlasticWaterBottlesBanned,omitempty"`
-	SoapDonationProgram                     **Ternary         `json:"soapDonationProgram,omitempty"`
-	StyrofoamFoodContainersBanned           **Ternary         `json:"styrofoamFoodContainersBanned,omitempty"`
-	ToiletryDonationProgram                 **Ternary         `json:"toiletryDonationProgram,omitempty"`
-	TowelReuseProgram                       **Ternary         `json:"towelReuseProgram,omitempty"`
-	VeganMealsAvailable                     **Ternary         `json:"veganMealsAvailable,omitempty"`
-	VegetarianMealsAvailable                **Ternary         `json:"vegetarianMealsAvailable,omitempty"`
-	WaterBottleFillingStations              **Ternary         `json:"waterBottleFillingStations,omitempty"`
-	WaterSavingShowers                      **Ternary         `json:"waterSavingShowers,omitempty"`
-	WaterSavingSinks                        **Ternary         `json:"waterSavingSinks,omitempty"`
-	WaterSavingToilets                      **Ternary         `json:"waterSavingToilets,omitempty"`
-	BreeamRating                            *string           `json:"breeamRating,omitempty"`
-	LeedRating                              *string           `json:"leedRating,omitempty"`
+	DigitalGuestRoomKeys                  **Ternary `json:"digitalGuestRoomKeys,omitempty"`
+	CommonAreasAdvancedCleaning           **Ternary `json:"commonAreasEnhancedCleaning,omitempty"`
+	GuestRoomsEnhancedCleaning            **Ternary `json:"guestRoomsEnhancedCleaning,omitempty"`
+	CommercialGradeDisinfectantUsed       **Ternary `json:"commercialGradeDisinfectantUsed,omitempty"`
+	EmployeesTrainedInCleaningProcedures  **Ternary `json:"employeesTrainedInCleaningProcedures,omitempty"`
+	EmployeesTrainedInHandWashing         **Ternary `json:"employeesTrainedInHandWashing,omitempty"`
+	EmployeesWearProtectiveEquipment      **Ternary `json:"employeesWearProtectiveEquipment,omitempty"`
+	HighTouchItemsRemovedFromGuestRooms   **Ternary `json:"highTouchItemsRemovedFromGuestRooms,omitempty"`
+	HighTouchItemsRemovedFromCommonAreas  **Ternary `json:"highTouchItemsRemovedFromCommonAreas,omitempty"`
+	PlasticKeycardsDisinfectedOrDiscarded **Ternary `json:"plasticKeycardsDisinfectedOrDiscarded,omitempty"`
+	ContactlessCheckInCheckOut            **Ternary `json:"contactlessCheckinOrCheckout,omitempty"`
+	PhysicalDistancingRequired            **Ternary `json:"physicalDistancingRequired,omitempty"`
+	PlexiglassUsed                        **Ternary `json:"plexiglassUsed,omitempty"`
+	LimitedOccupancyInSharedAreas         **Ternary `json:"limitedOccupancyInSharedAreas,omitempty"`
+	PrivateSpacesInWellnessAreas          **Ternary `json:"privateSpacesInWellnessAreas,omitempty"`
+	CommonAreasArrangedForDistancing      **Ternary `json:"commonAreasArrangedForDistancing,omitempty"`
+	SanitizerAvailable                    **Ternary `json:"sanitizerAvailable,omitempty"`
+	MasksRequired                         **Ternary `json:"masksRequired,omitempty"`
+	IndividuallyPackagedMealsAvailable    **Ternary `json:"individuallyPackagedMealsAvailable,omitempty"`
+	DisposableFlatware                    **Ternary `json:"disposableFlatware,omitempty"`
+	SingleUseMenus                        **Ternary `json:"singleUseMenus,omitempty"`
+	RoomBookingsBuffer                    **Ternary `json:"roomBookingsBuffer,omitempty"`
+	RequestOnlyHousekeeping               **Ternary `json:"requestOnlyHousekeeping,omitempty"`
+	InRoomHygieneKits                     **Ternary `json:"inRoomHygieneKits,omitempty"`
+	ProtectiveEquipmentAvailable          **Ternary `json:"protectiveEquipmentAvailable,omitempty"`
+	SafeHandlingForFoodServices           **Ternary `json:"safeHandlingForFoodServices,omitempty"`
+	AdditionalSanitationInFoodAreas       **Ternary `json:"additionalSanitationInFoodAreas,omitempty"`
+	EcoCertifications                     *UnorderedStrings `json:"ecoCertifications,omitempty"`
+	EcoFriendlyToiletries                 **Ternary `json:"ecoFriendlyToiletries,omitempty"`
 }
 
 const (
