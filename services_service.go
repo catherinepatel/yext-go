@@ -1,7 +1,7 @@
 package yext
 
 const createExistingSubAccountPath = "existingsubaccountaddrequest"
-const createExistingLocationPath = "existinglocationaddrequest"
+const createExistingLocationPath = "existinglocationaddrequests"
 
 type ServicesService struct {
 	client *Client
