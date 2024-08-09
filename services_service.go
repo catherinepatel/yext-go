@@ -66,7 +66,7 @@ func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountA
 
 func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRequest *ExistingLocationAddRequest) (*ExistingLocationAddResponse, *Response, error) {
 	var v *ExistingLocationAddResponse
-	r, err := a.client.DoRequest("POST", createExistingLocationPath, existingLocationAddRequest, &v)
+	r, err := a.client.DoRequestJSON("POST", createExistingLocationPath, existingLocationAddRequest, &v)
 	if err != nil {
 		return v, r, err
 	}
