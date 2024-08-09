@@ -17,8 +17,8 @@ type ExistingLocationAddRequest struct {
 	ExistingLocationId        string   `json:"existingLocationId"`
 	ExistingLocationAccountId string   `json:"existingLocationAccountId"`
 	Skus                      []string `json:"skus"`
-	AgreementId               string   `json:"agreementId"`
-	ForceReview               string   `json:"forceReview"`
+	AgreementId               *string   `json:"agreementId,omitempty"`
+	ForceReview               bool   `json:"forceReview"`
 }
 
 type SkuAddition struct {
