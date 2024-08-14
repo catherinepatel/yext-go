@@ -1,5 +1,9 @@
 package yext
 
+import (
+	"fmt"
+)
+
 const createExistingSubAccountPath = "existingsubaccountaddrequest"
 const createExistingLocationPath = "existinglocationaddrequests"
 const listLocationServicesPath = "services"
