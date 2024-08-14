@@ -56,7 +56,7 @@ type ExistingLocationAddResponse struct {
 	AddRequestId string `json:"addRequestId"`
 }
 
-type Service {
+type Service struct {
 	Sku string `json:"sku"`
 }
 
