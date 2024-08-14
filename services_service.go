@@ -52,6 +52,7 @@ type ExistingLocationAddResponse struct {
 	DateSubmitted             string   `json:"dateSubmitted"`
 	DateCompleted             string   `json:"dateCompleted"`
 	StatusDetail              string   `json:"statusDetail"`
+	AddRequestId string `json:"addRequestId"`
 }
 
 func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountAddRequest *ExistingSubAccountAddRequest) (*ExistingSubAccountAddResponse, *Response, error) {
