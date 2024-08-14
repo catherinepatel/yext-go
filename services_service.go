@@ -2,6 +2,7 @@ package yext
 
 const createExistingSubAccountPath = "existingsubaccountaddrequest"
 const createExistingLocationPath = "existinglocationaddrequests"
+const listLocationServicesPath = "services"
 
 type ServicesService struct {
 	client *Client
@@ -55,6 +56,14 @@ type ExistingLocationAddResponse struct {
 	AddRequestId string `json:"addRequestId"`
 }
 
+type Service {
+	Sku string `json:"sku"`
+}
+
+type ListLocationServicesResponse struct {
+	Services []*Service `json:"services"`
+}
+
 func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountAddRequest *ExistingSubAccountAddRequest) (*ExistingSubAccountAddResponse, *Response, error) {
 	var v *ExistingSubAccountAddResponse
 	r, err := a.client.DoRequest("POST", createExistingSubAccountPath, &v)
@@ -68,6 +77,16 @@ func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountA
 func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRequest *ExistingLocationAddRequest) (*ExistingLocationAddResponse, *Response, error) {
 	var v *ExistingLocationAddResponse
 	r, err := a.client.DoRequestJSON("POST", createExistingLocationPath, existingLocationAddRequest, &v)
+	if err != nil {
+		return v, r, err
+	}
+
+	return v, r, nil
+}
+
+func (a *ServicesService) ListLocationServices(locationId string) (*ListLocationServicesResponse, *Response, error) {
+	var v *ListLocationServicesResponse
+	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?locationId=%s", listLocationServicesPath, locationId), &v)
 	if err != nil {
 		return v, r, err
 	}
