@@ -61,13 +61,13 @@ type ExistingLocationAddResponse struct {
 	AddRequestId string `json:"addRequestId"`
 }
 
-type CancelServiceOnLocationRequest struct {
+type CancelServicesOnLocationRequest struct {
 	LocationId        string   `json:"locationId"`
 	LocationAccountId string   `json:"locationAccountId"`
 	Skus                      []string `json:"skus"`
 }
 
-type CancelServiceOnLocationResponse struct {
+type CancelServicesOnLocationResponse struct {
 }
 
 type Service struct {
