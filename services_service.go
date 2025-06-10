@@ -70,12 +70,13 @@ type CancelServicesOnLocationRequest struct {
 type CancelServicesOnLocationResponse struct {
 }
 
-type Service struct {
-	Sku string `json:"sku"`
+type AddRequest struct {
+	Status []string `json:"status"`
+	Skus []string `json:"skus"`
 }
 
 type ListLocationServicesResponse struct {
-	Services []*Service `json:"services"`
+	AddRequests []*AddRequest `json:"addRequests"`
 }
 
 func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountAddRequest *ExistingSubAccountAddRequest) (*ExistingSubAccountAddResponse, *Response, error) {
