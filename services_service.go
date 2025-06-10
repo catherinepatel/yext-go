@@ -7,6 +7,7 @@ import (
 const createExistingSubAccountPath = "existingsubaccountaddrequest"
 const createExistingLocationPath = "existinglocationaddrequests"
 const listLocationServicesPath = "services"
+const cancelServicesPath = "cancelservices"
 
 type ServicesService struct {
 	client *Client
@@ -60,6 +61,15 @@ type ExistingLocationAddResponse struct {
 	AddRequestId string `json:"addRequestId"`
 }
 
+type CancelServiceOnLocationRequest struct {
+	LocationId        string   `json:"locationId"`
+	LocationAccountId string   `json:"locationAccountId"`
+	Skus                      []string `json:"skus"`
+}
+
+type CancelServiceOnLocationResponse struct {
+}
+
 type Service struct {
 	Sku string `json:"sku"`
 }
@@ -91,6 +101,16 @@ func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRe
 func (a *ServicesService) ListLocationServices(locationId string) (*ListLocationServicesResponse, *Response, error) {
 	var v *ListLocationServicesResponse
 	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?locationId=%s", listLocationServicesPath, locationId), &v)
+	if err != nil {
+		return v, r, err
+	}
+
+	return v, r, nil
+}
+
+func (a *ServicesService) CancelServicesOnLocation(cancelServicesOnLocationRequest *CancelServicesOnLocationRequest) (*CancelServicesOnLocationResponse, *Response, error) {
+	var v *CancelServicesOnLocationResponse
+	r, err := a.client.DoRequestJSON("POST", cancelServicesPath, cancelServicesOnLocationRequest, &v)
 	if err != nil {
 		return v, r, err
 	}
