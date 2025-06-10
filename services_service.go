@@ -71,7 +71,7 @@ type CancelServicesOnLocationResponse struct {
 }
 
 type AddRequest struct {
-	Status []string `json:"status"`
+	Status string `json:"status"`
 	Skus []string `json:"skus"`
 }
 
