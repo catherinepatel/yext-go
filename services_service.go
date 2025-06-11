@@ -112,22 +112,28 @@ func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRe
 	return v, r, nil
 }
 
-func (a *ServicesService) ListLocationsWithService(sku string) (*ListLocationsWithServiceResponse, *Response, error) {
+func (a *ServicesService) ListLocationsWithService(sku string, offset int) (*ListLocationsWithServiceResponse, *Response, error) {
 	var v *ListLocationsWithServiceResponse
-	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?sku=%s&limit=1000", listLocationServicesPath, sku), &v)
+	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?sku=%s&limit=1000&offset=%d", listLocationServicesPath, sku, offset), &v)
 	if err != nil {
 		return v, r, err
 	}
+	return v, r, nil
 }
 
 func (a *ServicesService) ListAllLocationsWithService(sku string) ([]*Service, *Response, error) {
 	var services = []*Service{}
+	listLocationsWithServicesResp, resp, err := a.ListLocationsWithService(sku)
+	if err != nil {
+		return services, resp, err
+	}
+	services = append(services, listLocationsWithServicesResp.Services)
 	for len(services) != listLocationsWithServicesResp.Count {
-		listLocationsWithServicesResp, resp, err := a.ListLocationsWithService(sku)
+		listLocationsWithServicesResp, resp, err = a.ListLocationsWithService(sku, len(services))
 		if err != nil {
 			return services, resp, err
 		}
-		services.append(services, listLocationsWithServicesResp.Services)
+		services = append(services, listLocationsWithServicesResp.Services)
 	}
 	return services, nil, nil
 		
