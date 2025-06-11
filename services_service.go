@@ -89,6 +89,7 @@ type Service struct {
 
 type ListLocationsWithServiceResponse struct {
 	Services []*Service `json:"services"`
+	Count int `json:"count"`
 }
 
 func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountAddRequest *ExistingSubAccountAddRequest) (*ExistingSubAccountAddResponse, *Response, error) {
@@ -117,8 +118,19 @@ func (a *ServicesService) ListLocationsWithService(sku string) (*ListLocationsWi
 	if err != nil {
 		return v, r, err
 	}
+}
 
-	return v, r, nil
+func (a *ServicesService) ListAllLocationsWithService(sku string) ([]*Service, *Response, error) {
+	var services = []*Service{}
+	for len(services) != listLocationsWithServicesResp.Count {
+		listLocationsWithServicesResp, resp, err := a.ListLocationsWithService(sku)
+		if err != nil {
+			return services, resp, err
+		}
+		services.append(services, listLocationsWithServicesResp.Services)
+	}
+	return services, nil, nil
+		
 }
 
 func (a *ServicesService) ListLocationServices(locationId string) (*ListLocationServicesResponse, *Response, error) {
