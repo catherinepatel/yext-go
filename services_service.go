@@ -82,7 +82,7 @@ type ListLocationServicesResponse struct {
 
 type Service struct {
 	Status string `json:"status"`
-	Sku []string `json:"sku"`
+	Sku string `json:"sku"`
 	ExistingLocationId string `json:"existingLocationId"`
 }
 	
