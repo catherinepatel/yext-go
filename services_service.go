@@ -99,6 +99,16 @@ func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRe
 	return v, r, nil
 }
 
+func (a *ServicesService) ListLocationsWithService(sku string) (*ListLocationServicesResponse, *Response, error) {
+	var v *ListLocationServicesResponse
+	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?sku=%s&limit=1000", listLocationServicesPath, sku), &v)
+	if err != nil {
+		return v, r, err
+	}
+
+	return v, r, nil
+}
+
 func (a *ServicesService) ListLocationServices(locationId string) (*ListLocationServicesResponse, *Response, error) {
 	var v *ListLocationServicesResponse
 	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?locationId=%s", listLocationServicesPath, locationId), &v)
