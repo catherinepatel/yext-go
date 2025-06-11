@@ -80,6 +80,17 @@ type ListLocationServicesResponse struct {
 	AddRequests []*AddRequest `json:"addRequests"`
 }
 
+type Service struct {
+	Status string `json:"status"`
+	Sku []string `json:"sku"`
+	ExistingLocationId string `json:"existingLocationId"`
+}
+	
+
+type ListLocationsWithServiceResponse struct {
+	Services []*Service `json:"services"`
+}
+
 func (a *ServicesService) CreateAddRequestExistingSubAccount(existingSubAccountAddRequest *ExistingSubAccountAddRequest) (*ExistingSubAccountAddResponse, *Response, error) {
 	var v *ExistingSubAccountAddResponse
 	r, err := a.client.DoRequest("POST", createExistingSubAccountPath, &v)
@@ -100,8 +111,8 @@ func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRe
 	return v, r, nil
 }
 
-func (a *ServicesService) ListLocationsWithService(sku string) (*ListLocationServicesResponse, *Response, error) {
-	var v *ListLocationServicesResponse
+func (a *ServicesService) ListLocationsWithService(sku string) (*ListLocationsWithServiceResponse, *Response, error) {
+	var v *ListLocationsWithServiceResponse
 	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?sku=%s&limit=1000", listLocationServicesPath, sku), &v)
 	if err != nil {
 		return v, r, err
