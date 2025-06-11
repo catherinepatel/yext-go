@@ -123,17 +123,17 @@ func (a *ServicesService) ListLocationsWithService(sku string, offset int) (*Lis
 
 func (a *ServicesService) ListAllLocationsWithService(sku string) ([]*Service, *Response, error) {
 	var services = []*Service{}
-	listLocationsWithServicesResp, resp, err := a.ListLocationsWithService(sku)
+	listLocationsWithServicesResp, resp, err := a.ListLocationsWithService(sku, 0)
 	if err != nil {
 		return services, resp, err
 	}
-	services = append(services, listLocationsWithServicesResp.Services)
+	services = append(services, listLocationsWithServicesResp.Services...)
 	for len(services) != listLocationsWithServicesResp.Count {
 		listLocationsWithServicesResp, resp, err = a.ListLocationsWithService(sku, len(services))
 		if err != nil {
 			return services, resp, err
 		}
-		services = append(services, listLocationsWithServicesResp.Services)
+		services = append(services, listLocationsWithServicesResp.Services...)
 	}
 	return services, nil, nil
 		
