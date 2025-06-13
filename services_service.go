@@ -8,6 +8,7 @@ const createExistingSubAccountPath = "existingsubaccountaddrequest"
 const createExistingLocationPath = "existinglocationaddrequests"
 const listLocationServicesPath = "services"
 const cancelServicesPath = "cancelservices"
+const addRequestsPath = "addrequests"
 
 type ServicesService struct {
 	client *Client
@@ -80,6 +81,11 @@ type ListLocationServicesResponse struct {
 	AddRequests []*AddRequest `json:"addRequests"`
 }
 
+type ListLocationAddRequestsResponse struct {
+	AddRequests []*AddRequest `json:"addRequests"`
+	Count int `json:"count"`
+}
+
 type Service struct {
 	Status string `json:"status"`
 	Sku string `json:"sku"`
@@ -110,6 +116,32 @@ func (a *ServicesService) CreateAddRequestExistingLocation(existingLocationAddRe
 	}
 
 	return v, r, nil
+}
+
+func (a *ServicesService) ListLocationAddRequests(sku string, offset int) (*ListLocationAddRequestsResponse, *Response, error) {
+	var v *ListLocationAddRequestsResponse
+	r, err := a.client.DoRequest("GET", fmt.Sprintf("%s?sku=%s&limit=1000&offset=%d", addRequestsPath, sku, offset), &v)
+	if err != nil {
+		return v, r, err
+	}
+	return v, r, nil
+}
+
+func (a *ServicesService) ListAllLocationAddRequests(sku string) ([]*AddRequest, *Response, error) {
+	var addRequests = []*AddRequest{}
+	listLocationAddRequestsResp, resp, err := a.ListLocationAddRequests(sku, 0)
+	if err != nil {
+		return addRequests, resp, err
+	}
+	addRequests = append(addRequests, listLocationAddRequestsResp.AddRequests...)
+	for len(addRequests) != listLocationAddRequestsResp.Count {
+		listLocationAddRequestsResp, resp, err := a.ListLocationAddRequests(sku, len(addRequests))
+		if err != nil {
+			return addRequests, resp, err
+		}
+		addRequests = append(addRequests, listLocationAddRequestsResp.AddRequests...)
+	}
+	return addRequests, nil, nil	
 }
 
 func (a *ServicesService) ListLocationsWithService(sku string, offset int) (*ListLocationsWithServiceResponse, *Response, error) {
